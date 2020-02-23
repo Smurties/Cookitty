@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../../middleware/auth');
 
 // Recipe Model
 const Recipe = require('../../models/Recipe');
@@ -17,8 +18,8 @@ router.get('/', (req, res) => {
 
 // @route   POST api/recipes
 // @desc    Create a recipe
-// @access  Public
-router.post('/', (req, res) => {
+// @access  Private
+router.post('/', auth, (req, res) => {
   const newRecipe = new Recipe({ name: req.body.name });
 
   newRecipe.save().then(recipe => res.json(recipe));
@@ -26,8 +27,8 @@ router.post('/', (req, res) => {
 
 // @route   DELETE api/recipes/:id
 // @desc    Delete a recipe
-// @access  Public
-router.delete('/:id', (req, res) => {
+// @access  Private
+router.delete('/:id', auth, (req, res) => {
   Recipe.findById(req.params.id)
     .then(recipe => recipe.remove().then(() => res.json({ success: true })))
     .catch(err => res.status(404).json({ success: false }));
