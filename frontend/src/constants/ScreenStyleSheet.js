@@ -1,45 +1,40 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  // Screen
-  container: {
-    flex: 1,
-    alignItems: "center",
-    backgroundColor: "#FFFFFF"
+  cookitty: {
+    fontWeight: "bold",
+    fontSize: 40,
+    textAlign: "center",
+    marginBottom: 125,
+    marginTop: 80
   },
-
-  // Header
-  header: {
-    backgroundColor: "white",
-    height: 45,
-    fontFamily: "proxima_nova_reg"
+  authButton: {
+    marginTop: 30,
+    marginBottom: 80,
+    marginRight: 50,
+    marginLeft: 50,
+    padding: 10,
+    backgroundColor: "grey",
+    borderRadius: 8
   },
-
-  headerBody: {
-    flex: 1,
-    alignItems: "center"
+  authButtonText: {
+    color: "white",
+    textAlign: "center",
+    fontSize: 15,
+    fontWeight: "bold"
   },
-
-  headerTitle: {
-    color: "grey"
+  input: {
+    marginLeft: 20,
+    marginRight: 20
   },
-
-  headerSides: {
-    flex: 1
+  icon: {
+    margin: "auto",
+    width: 20,
+    textAlign: "center",
+    alignSelf: "center",
+    fontSize: 20
   },
-
-  sideBarHeaderBody: {
-    marginLeft: 5
-  },
-  
-  sideBarTextItem: {
-    marginLeft: 10
-  },
-
-  // Header icons
-  headerIcon: {
-    height: 20,
-    width: 20
-  },
-
-}) ;
+  divider: {
+    marginHorizontal: 10
+  }
+});
