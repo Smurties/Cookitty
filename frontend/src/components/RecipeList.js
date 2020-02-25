@@ -1,13 +1,20 @@
-import React, { Component } from "react";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
-import ScreenStyleSheet from "../constants/ScreenStyleSheet";
-import { List } from "native-base";
-import RecipeItem from "./RecipeItem";
-import { Divider } from "react-native-elements";
+import React, { Component } from 'react';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import ScreenStyleSheet from '../constants/ScreenStyleSheet';
+import { List } from 'native-base';
+import RecipeItem from './RecipeItem';
+import { Divider } from 'react-native-elements';
+import { connect } from 'react-redux';
+import { getRecipes } from '../actions/recipeActions';
+import PropTypes from 'prop-types';
 
 class RecipeList extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    this.props.getRecipes;
   }
 
   getRecipe() {
@@ -32,8 +39,18 @@ class RecipeList extends Component {
   }
 
   render() {
+    const { recipes } = this.props.recipe;
     return <List>{this.getRecipe()}</List>;
   }
 }
 
-export default RecipeList;
+RecipeList.proptypes = {
+  getRecipes: PropTypes.func.isRequired,
+  recipe: PropTypes.object.isRequired
+};
+
+const mapStatetoProps = state => ({
+  recipe: state.recipe
+});
+
+export default connect(mapStatetoProps, { getRecipes })(RecipeList);

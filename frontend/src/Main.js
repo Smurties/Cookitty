@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import RouterComponent from "./components/Router";
-// import { Provider } from "react-redux";
-// import { createStore, applyMiddleware } from "redux";
-// import ReduxThunk from "redux-thunk";
+import React, { Component } from 'react';
+import RouterComponent from './components/Router';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+
 import {
   Container,
   Header,
@@ -12,14 +12,14 @@ import {
   Right,
   Content,
   Button
-} from "native-base";
-import { StyleSheet, Text, View } from "react-native";
+} from 'native-base';
+import { StyleSheet, Text, View } from 'react-native';
 
 // Initializes app
 export default class Main extends Component {
   render() {
     return (
-      //   <Provider store={createStore(reducer, {}, applyMiddleware(ReduxThunk))}>
+      //   <Provider store={store}>
       <RouterComponent />
       //   </Provider>
     );
@@ -29,8 +29,8 @@ export default class Main extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
