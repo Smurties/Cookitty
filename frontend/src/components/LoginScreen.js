@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { Actions } from "react-native-router-flux";
-import { StyleSheet, View, TouchableOpacity } from "react-native";
+import React, { Component } from 'react';
+import { Actions } from 'react-native-router-flux';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import {
   Container,
   Header,
@@ -9,32 +9,38 @@ import {
   Item,
   Input,
   Toast
-} from "native-base";
-import Icon from "react-native-vector-icons/FontAwesome5";
-import ScreenStyleSheet from "../constants/ScreenStyleSheet";
-import ValidationComponent from "react-native-form-validator";
+} from 'native-base';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import ScreenStyleSheet from '../constants/ScreenStyleSheet';
+import ValidationComponent from 'react-native-form-validator';
 
 class LoginScreen extends ValidationComponent {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password: ""
+      email: '',
+      password: ''
     };
     this.onPressLogin = this.onPressLogin.bind(this);
   }
 
-  onChangeUser = text => {
+  onChange = e => {
     this.setState({
-      email: text
+      [e.target.name]: e.target.value
     });
   };
 
-  onChangePassword = text => {
-    this.setState({
-      password: text
-    });
-  };
+  // onChangeUser = text => {
+  //   this.setState({
+  //     email: text
+  //   });
+  // };
+
+  // onChangePassword = text => {
+  //   this.setState({
+  //     password: text
+  //   });
+  // };
 
   login = async () => {
     // await new Promise((resolve, reject) => {
@@ -42,7 +48,7 @@ class LoginScreen extends ValidationComponent {
     //   this.props.loginUser(this.state.email, this.state.password);
     //   resolve();
     // });
-    console.log("login");
+    console.log('login');
   };
 
   onPressLogin() {
@@ -54,7 +60,7 @@ class LoginScreen extends ValidationComponent {
       this.login();
     } else {
       Toast.show({
-        text: "Invalid email, please check again!"
+        text: 'Invalid email, please check again!'
       });
     }
   }
@@ -70,8 +76,8 @@ class LoginScreen extends ValidationComponent {
         {/* Header */}
         <Header
           style={{ height: 0 }}
-          androidStatusBarColor={"white"}
-          iosBarStyle={"dark-content"}
+          androidStatusBarColor={'white'}
+          iosBarStyle={'dark-content'}
         />
         <Content>
           <Text style={ScreenStyleSheet.cookitty}>Cookitty</Text>
@@ -79,9 +85,9 @@ class LoginScreen extends ValidationComponent {
             <Icon active name="envelope" style={ScreenStyleSheet.icon} />
             <Input
               placeholder="Email"
-              placeholderColor={"grey"}
+              placeholderColor={'grey'}
               value={this.state.email}
-              onChangeText={text => this.onChangeUser(text)}
+              onChangeText={this.onChange()}
             />
           </Item>
           <Item style={ScreenStyleSheet.input}>
@@ -92,10 +98,10 @@ class LoginScreen extends ValidationComponent {
             />
             <Input
               placeholder="Password"
-              placeholderColor={"grey"}
+              placeholderColor={'grey'}
               onChangeText={text => this.onChangePassword(text)}
               value={this.state.password}
-              secureTextEntry={true}
+              secureTextEntry={this.onChange()}
             />
           </Item>
 
@@ -130,18 +136,18 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   signUp: {
     fontSize: 15,
-    color: "black",
-    textAlign: "center"
+    color: 'black',
+    textAlign: 'center'
   },
   here: {
     fontSize: 15,
-    color: "grey",
-    textDecorationLine: "underline",
-    textAlign: "right"
+    color: 'grey',
+    textDecorationLine: 'underline',
+    textAlign: 'right'
   },
   nestedButtonView: {
-    flexDirection: "row",
-    alignItems: "center",
-    alignSelf: "center"
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'center'
   }
 });

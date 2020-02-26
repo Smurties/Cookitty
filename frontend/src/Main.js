@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import RouterComponent from './components/Router';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import { loadUser } from './actions/authActions';
 
 import {
   Container,
@@ -17,6 +18,10 @@ import { StyleSheet, Text, View } from 'react-native';
 
 // Initializes app
 export default class Main extends Component {
+  componentDidMount() {
+    store.dispatch(loadUser());
+  }
+
   render() {
     return (
       //   <Provider store={store}>
