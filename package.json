@@ -6,7 +6,8 @@
     "backend": "npm start --prefix backend",
     "frontend": "npm start --prefix frontend",
     "deploy": "npm install --prefix backend",
-    "start": "concurrently \"npm run backend\" \"npm run frontend\""
+    "concurrently": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "start": "npm start --prefix frontend"
   },
   "dependencies": {
     "concurrently": "^5.1.0"
