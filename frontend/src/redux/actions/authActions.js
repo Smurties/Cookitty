@@ -10,6 +10,7 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL
 } from './types';
+import { HOSTNAME } from './constants';
 
 // Check token and load user
 export const loadUser = () => (dispatch, getState) => {
@@ -17,7 +18,7 @@ export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
 
   axios
-    .get('/api/auth/user', tokenConfig(getState))
+    .get(`${HOSTNAME}/api/auth/user`, tokenConfig(getState))
     .then(res => dispatch({ type: USER_LOADED, payload: res.data }))
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status));
@@ -38,8 +39,10 @@ export const register = ({ name, email, password }) => dispatch => {
   const body = JSON.stringify({ name, email, password });
 
   axios
-    .post('/api/users', body, config)
-    .then(res => dispatch({ type: REGISTER_SUCCESS, payload: res.data }))
+    .post(`${HOSTNAME}/api/users`, body, config)
+    .then(res => {
+      dispatch({ type: REGISTER_SUCCESS, payload: res.data });
+    })
     .catch(err => {
       dispatch(
         returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL')
@@ -61,7 +64,7 @@ export const login = ({ email, password }) => dispatch => {
   const body = JSON.stringify({ email, password });
 
   axios
-    .post('/api/users', body, config)
+    .post(`${HOSTNAME}/api/users`, body, config)
     .then(res => dispatch({ type: LOGIN_SUCCESS, payload: res.data }))
     .catch(err => {
       dispatch(

@@ -5,13 +5,14 @@ import {
   DELETE_RECIPE,
   RECIPES_LOADING
 } from './types';
+import { HOSTNAME } from './constants';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
 
 export const getRecipes = () => dispatch => {
   dispatch(setRecipesLoading());
   axios
-    .get('/api/recipes')
+    .get(`${HOSTNAME}/api/recipes`)
     .then(res =>
       dispatch({
         type: GET_RECIPES,
@@ -25,7 +26,7 @@ export const getRecipes = () => dispatch => {
 
 export const postRecipe = recipe => (dispatch, getState) => {
   axios
-    .post('/api/recipes', recipe, tokenConfig(getState))
+    .post(`${HOSTNAME}//api/recipes`, recipe, tokenConfig(getState))
     .then(res => dispatch({ type: POST_RECIPE, payload: res.data }))
     .catch(err =>
       dispatch(returnErrors(err.response.data, err.response.status))
