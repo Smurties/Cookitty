@@ -1,6 +1,6 @@
-import React from 'react';
-import { Actions } from 'react-native-router-flux';
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import React from "react";
+import { Actions } from "react-native-router-flux";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import {
   Container,
   Header,
@@ -9,17 +9,20 @@ import {
   Item,
   Input,
   Toast
-} from 'native-base';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import ScreenStyleSheet from '../constants/ScreenStyleSheet';
-import ValidationComponent from 'react-native-form-validator';
+} from "native-base";
+import Icon from "react-native-vector-icons/FontAwesome5";
+import ScreenStyleSheet from "../constants/ScreenStyleSheet";
+import ValidationComponent from "react-native-form-validator";
+import { login } from "../redux/actions/authActions";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 class LoginScreen extends ValidationComponent {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: ''
+      email: "",
+      password: ""
     };
   }
 
@@ -29,7 +32,7 @@ class LoginScreen extends ValidationComponent {
     //   this.props.loginUser(this.state.email, this.state.password);
     //   resolve();
     // });
-    console.log('login');
+    console.log("login");
   }
 
   onPressLogin() {
@@ -41,14 +44,14 @@ class LoginScreen extends ValidationComponent {
       this.login();
     } else {
       Toast.show({
-        text: 'Invalid email, please check again!'
+        text: "Invalid email, please check again!"
       });
     }
   }
 
-  // onPressSignUp = () => {
-  //     Actions.signup();
-  // };
+  onPressSignUp = () => {
+    Actions.signup();
+  };
 
   //render the screen
   render() {
@@ -57,8 +60,8 @@ class LoginScreen extends ValidationComponent {
         {/* Header */}
         <Header
           style={{ height: 0 }}
-          androidStatusBarColor={'white'}
-          iosBarStyle={'dark-content'}
+          androidStatusBarColor={"white"}
+          iosBarStyle={"dark-content"}
         />
         <Content>
           <Text style={ScreenStyleSheet.cookitty}>Cookitty</Text>
@@ -67,7 +70,7 @@ class LoginScreen extends ValidationComponent {
             <Input
               name="email"
               placeholder="Email"
-              placeholderColor={'grey'}
+              placeholderColor={"grey"}
               value={this.state.email}
               onChangeText={text => this.setState({ email: text })}
             />
@@ -81,7 +84,7 @@ class LoginScreen extends ValidationComponent {
             <Input
               name="password"
               placeholder="Password"
-              placeholderColor={'grey'}
+              placeholderColor={"grey"}
               value={this.state.password}
               onChangeText={text => this.setState({ password: text })}
               secureTextEntry
@@ -113,24 +116,32 @@ class LoginScreen extends ValidationComponent {
   }
 }
 
-export default LoginScreen;
+LoginScreen.proptypes = {
+  login: PropTypes.func.isRequired
+};
+
+const mapStatetoProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStatetoProps, { login })(LoginScreen);
 
 //Style Sheet
 const styles = StyleSheet.create({
   signUp: {
     fontSize: 15,
-    color: 'black',
-    textAlign: 'center'
+    color: "black",
+    textAlign: "center"
   },
   here: {
     fontSize: 15,
-    color: 'grey',
-    textDecorationLine: 'underline',
-    textAlign: 'right'
+    color: "grey",
+    textDecorationLine: "underline",
+    textAlign: "right"
   },
   nestedButtonView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'center'
+    flexDirection: "row",
+    alignItems: "center",
+    alignSelf: "center"
   }
 });

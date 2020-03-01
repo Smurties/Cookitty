@@ -24,9 +24,9 @@ export default class Main extends Component {
 
   render() {
     return (
-      //   <Provider store={store}>
-      <RouterComponent />
-      //   </Provider>
+      <Provider store={store}>
+        <RouterComponent />
+      </Provider>
     );
   }
 }
