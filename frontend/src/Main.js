@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import RouterComponent from "./components/Router";
-// import { Provider } from "react-redux";
-// import { createStore, applyMiddleware } from "redux";
-// import ReduxThunk from "redux-thunk";
+import { Provider } from "react-redux";
+import store from "./redux/store";
+import { loadUser } from "./redux/actions/authActions";
+
 import {
   Container,
   Header,
@@ -17,11 +18,15 @@ import { StyleSheet, Text, View } from "react-native";
 
 // Initializes app
 export default class Main extends Component {
+  componentDidMount() {
+    store.dispatch(loadUser());
+  }
+
   render() {
     return (
-      //   <Provider store={createStore(reducer, {}, applyMiddleware(ReduxThunk))}>
-      <RouterComponent />
-      //   </Provider>
+      <Provider store={store}>
+        <RouterComponent />
+      </Provider>
     );
   }
 }

@@ -13,12 +13,15 @@ import {
 import Icon from "react-native-vector-icons/FontAwesome5";
 import ScreenStyleSheet from "../constants/ScreenStyleSheet";
 import ValidationComponent from "react-native-form-validator";
+import { register } from "../redux/actions/authActions";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 class SignupScreen extends ValidationComponent {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
+      name: "",
       email: "",
       password: "",
       confirmPassword: ""
@@ -26,35 +29,23 @@ class SignupScreen extends ValidationComponent {
     this.onPressSignup = this.onPressSignup.bind(this);
   }
 
-  onChangeUsername = text => {
-    this.setState({
-      username: text
-    });
-  };
-
-  onChangeEmail = text => {
-    this.setState({
-      email: text
-    });
-  };
-
-  onChangePassword = text => {
-    this.setState({
-      password: text
-    });
-  };
-
-  onChangeConfrimPassword = text => {
-    this.setState({
-      confirmPassword: text
-    });
-  };
-
   signup = async () => {
     console.log("singup");
+    const { name, email, password } = this.state;
+    const newUser = {
+      name,
+      email,
+      password
+    };
+    this.props.register(newUser);
     // await new Promise((resolve, reject) => {
     //   // Edit the event user clicks
-    //   this.props.signup(this.username, this.state.email, this.state.password);
+    //   const newUser = {
+    //     name,
+    //     email,
+    //     password
+    //   };
+    //   this.props.register(newUser);
     //   resolve();
     // });
   };
@@ -64,8 +55,8 @@ class SignupScreen extends ValidationComponent {
       email: { email: true, required: true }
     });
 
-    let usernameValid = this.validate({
-      username: { minlength: 3, maxlength: 30, required: true }
+    let nameValid = this.validate({
+      name: { minlength: 3, maxlength: 30, required: true }
     });
 
     let pwValid = false;
@@ -73,9 +64,9 @@ class SignupScreen extends ValidationComponent {
       pwValid = true;
     }
 
-    if (usernameValid && emailValid && pwValid) {
+    if (nameValid && emailValid && pwValid) {
       this.signup();
-    } else if (!usernameValid) {
+    } else if (!nameValid) {
       Toast.show({
         text:
           "Username should be in between 3-30 characters, please check again!"
@@ -93,6 +84,7 @@ class SignupScreen extends ValidationComponent {
         text: "Something went wrong, please check again!"
       });
     }
+    this.signup();
   }
 
   //render the screen
@@ -111,19 +103,21 @@ class SignupScreen extends ValidationComponent {
           <Item style={ScreenStyleSheet.input}>
             <Icon active name="user" style={ScreenStyleSheet.icon} />
             <Input
+              name="name"
               placeholder="Username"
               placeholderColor={"grey"}
-              value={this.state.username}
-              onChangeText={text => this.onChangeUsername(text)}
+              value={this.state.name}
+              onChangeText={text => this.setState({ name: text })}
             />
           </Item>
           <Item style={ScreenStyleSheet.input}>
             <Icon active name="envelope" style={ScreenStyleSheet.icon} />
             <Input
+              name="email"
               placeholder="Email"
               placeholderColor={"grey"}
               value={this.state.email}
-              onChangeText={text => this.onChangeEmail(text)}
+              onChangeText={text => this.setState({ email: text })}
             />
           </Item>
           <Item style={ScreenStyleSheet.input}>
@@ -133,11 +127,12 @@ class SignupScreen extends ValidationComponent {
               style={[ScreenStyleSheet.icon, { fontSize: 21 }]}
             />
             <Input
+              name="password"
               placeholder="Password"
               placeholderColor={"grey"}
-              onChangeText={text => this.onChangePassword(text)}
               value={this.state.password}
-              secureTextEntry={true}
+              onChangeText={text => this.setState({ password: text })}
+              secureTextEntry
             />
           </Item>
           <Item style={ScreenStyleSheet.input}>
@@ -147,11 +142,12 @@ class SignupScreen extends ValidationComponent {
               style={[ScreenStyleSheet.icon, { fontSize: 21 }]}
             />
             <Input
+              name="confirmPassword"
               placeholder="Confirm password"
               placeholderColor={"grey"}
-              onChangeText={text => this.onChangeConfrimPassword(text)}
               value={this.state.confirmPassword}
-              secureTextEntry={true}
+              onChangeText={text => this.setState({ confirmPassword: text })}
+              secureTextEntry
             />
           </Item>
 
@@ -159,7 +155,6 @@ class SignupScreen extends ValidationComponent {
             style={ScreenStyleSheet.authButton}
             onPress={this.onPressSignup}
           >
-            {/* Login Button - redirect user to home screen if successfull */}
             <Text style={ScreenStyleSheet.authButtonText}> SIGNUP </Text>
           </TouchableOpacity>
         </Content>
@@ -168,7 +163,12 @@ class SignupScreen extends ValidationComponent {
   }
 }
 
-export default SignupScreen;
+SignupScreen.proptypes = {
+  register: PropTypes.func.isRequired
+};
 
-//Style Sheet
-const styles = StyleSheet.create({});
+const mapStatetoProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStatetoProps, { register })(SignupScreen);

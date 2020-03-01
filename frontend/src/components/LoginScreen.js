@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Actions } from "react-native-router-flux";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 import {
@@ -13,6 +13,9 @@ import {
 import Icon from "react-native-vector-icons/FontAwesome5";
 import ScreenStyleSheet from "../constants/ScreenStyleSheet";
 import ValidationComponent from "react-native-form-validator";
+import { login } from "../redux/actions/authActions";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 class LoginScreen extends ValidationComponent {
   constructor(props) {
@@ -21,29 +24,16 @@ class LoginScreen extends ValidationComponent {
       email: "",
       password: ""
     };
-    this.onPressLogin = this.onPressLogin.bind(this);
   }
 
-  onChangeUser = text => {
-    this.setState({
-      email: text
-    });
-  };
-
-  onChangePassword = text => {
-    this.setState({
-      password: text
-    });
-  };
-
-  login = async () => {
+  login() {
     // await new Promise((resolve, reject) => {
     //   // Edit the event user clicks
     //   this.props.loginUser(this.state.email, this.state.password);
     //   resolve();
     // });
     console.log("login");
-  };
+  }
 
   onPressLogin() {
     let valid = this.validate({
@@ -59,9 +49,9 @@ class LoginScreen extends ValidationComponent {
     }
   }
 
-  // onPressSignUp = () => {
-  //     Actions.signup();
-  // };
+  onPressSignUp = () => {
+    Actions.signup();
+  };
 
   //render the screen
   render() {
@@ -78,10 +68,11 @@ class LoginScreen extends ValidationComponent {
           <Item style={ScreenStyleSheet.input}>
             <Icon active name="envelope" style={ScreenStyleSheet.icon} />
             <Input
+              name="email"
               placeholder="Email"
               placeholderColor={"grey"}
               value={this.state.email}
-              onChangeText={text => this.onChangeUser(text)}
+              onChangeText={text => this.setState({ email: text })}
             />
           </Item>
           <Item style={ScreenStyleSheet.input}>
@@ -91,11 +82,12 @@ class LoginScreen extends ValidationComponent {
               style={[ScreenStyleSheet.icon, { fontSize: 21 }]}
             />
             <Input
+              name="password"
               placeholder="Password"
               placeholderColor={"grey"}
-              onChangeText={text => this.onChangePassword(text)}
               value={this.state.password}
-              secureTextEntry={true}
+              onChangeText={text => this.setState({ password: text })}
+              secureTextEntry
             />
           </Item>
 
@@ -124,7 +116,15 @@ class LoginScreen extends ValidationComponent {
   }
 }
 
-export default LoginScreen;
+LoginScreen.proptypes = {
+  login: PropTypes.func.isRequired
+};
+
+const mapStatetoProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStatetoProps, { login })(LoginScreen);
 
 //Style Sheet
 const styles = StyleSheet.create({

@@ -1,0 +1,13 @@
+{
+  "name": "cookitty",
+  "version": "1.0.0",
+  "description": "Mobile Cooking Application",
+  "scripts": {
+    "backend": "npm start --prefix backend",
+    "frontend": "npm start --prefix frontend",
+    "start": "concurrently \"npm run backend\" \"npm run frontend\""
+  },
+  "dependencies": {
+    "concurrently": "^5.1.0"
+  }
+}
