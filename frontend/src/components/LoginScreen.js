@@ -24,6 +24,7 @@ class LoginScreen extends ValidationComponent {
       email: "",
       password: ""
     };
+    this.onPressLogin = this.onPressLogin.bind(this);
   }
 
   login() {
@@ -36,11 +37,11 @@ class LoginScreen extends ValidationComponent {
   }
 
   onPressLogin() {
-    let valid = this.validate({
+    let emailValid = this.validate({
       email: { email: true, required: true }
     });
 
-    if (valid) {
+    if (emailValid) {
       this.login();
     } else {
       Toast.show({

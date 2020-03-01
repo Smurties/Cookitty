@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, FlatList, View } from "react-native";
+import { Image, FlatList, View, StyleSheet } from "react-native";
 import {
   Container,
   Header,
@@ -15,8 +15,10 @@ import {
 import { Divider } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import ScreenStyleSheet from "../constants/ScreenStyleSheet";
+import InfoRow from "./InfoRow";
+import Ingredient from "./Ingredient";
 
-const DATA = [
+const info = [
   {
     title: "Servings ",
     number: "10"
@@ -30,6 +32,22 @@ const DATA = [
     number: "5 mins"
   }
 ];
+
+const ingredients = [
+  {
+    ingredient: "Beef",
+    amount: "500g"
+  },
+  {
+    ingredient: "Garlic",
+    amount: "2 cloves"
+  },
+  {
+    ingredient: "Oil",
+    amount: "1 teaspoon"
+  }
+];
+
 class RecipeScreen extends Component {
   constructor(props) {
     super(props);
@@ -66,19 +84,13 @@ class RecipeScreen extends Component {
             This dish is my go-to when I need protein and veggies in one dish,
             very easy steps, doesn’t take long to cook but still yummy.
           </Text>
-          <Divider style={ScreenStyleSheet.contentDivider} />
-          <FlatList
-            horizontal
-            data={DATA}
-            renderItem={({ item }) => (
-              <View style={{ padding: 10 }}>
-                <Text>{item.title}</Text>
-                <Text>{item.number}</Text>
-              </View>
-            )}
-            keyExtractor={item => item.title}
-          />
-          <Divider style={ScreenStyleSheet.contentDivider} />
+          <InfoRow info={info} />
+          <Text style={{ fontWeight: "bold" }}>Ingredients</Text>
+          <Divider style={ScreenStyleSheet.bottomDivider} />
+          <Ingredient ingredients={ingredients} />
+
+          <Text style={{ fontWeight: "bold" }}>Steps</Text>
+          <Divider style={ScreenStyleSheet.bottomDivider} />
         </Content>
       </Container>
     );
