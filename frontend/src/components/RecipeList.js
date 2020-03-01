@@ -31,7 +31,7 @@ class RecipeList extends Component {
             user={recipe.user}
             description={recipe.description}
           />
-          <Divider style={ScreenStyleSheet.divider} />
+          <Divider style={ScreenStyleSheet.listDivider} />
         </TouchableOpacity>
       );
     });

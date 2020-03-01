@@ -6,6 +6,7 @@ import SignupScreen from "./SignupScreen";
 import HomeScreen from "./HomeScreen";
 import AddRecipeScreen from "./AddRecipeScreen";
 import ProfileScreen from "./ProfileScreen";
+import RecipeScreen from "./RecipeScreen";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 // https://gist.github.com/rturk/858c1afaee170a3a141adc7da652883e

@@ -5,6 +5,8 @@ export default StyleSheet.create({
     fontWeight: "bold",
     fontSize: 40,
     textAlign: "center",
+    justifyContent: "center",
+    alignItems: "center",
     marginBottom: 125,
     marginTop: 80
   },
@@ -32,9 +34,32 @@ export default StyleSheet.create({
     width: 20,
     textAlign: "center",
     alignSelf: "center",
-    fontSize: 20
+    fontSize: 25
   },
-  divider: {
+  listDivider: {
     marginHorizontal: 10
+  },
+  contentDivider: {
+    marginVertical: 10
+  },
+  headerIcon: {
+    alignSelf: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 30,
+    width: 30,
+    margin: 0
+  },
+  headerText: {
+    margin: "auto",
+    paddingLeft: 2,
+    alignSelf: "center",
+    fontSize: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    color: "black"
+  },
+  content: {
+    margin: 10
   }
 });
