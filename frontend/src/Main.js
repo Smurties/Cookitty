@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import RouterComponent from './components/Router';
-import { Provider } from 'react-redux';
-import store from './redux/store';
-import { loadUser } from './actions/authActions';
+import React, { Component } from "react";
+import RouterComponent from "./components/Router";
+import { Provider } from "react-redux";
+import store from "./redux/store";
+import { loadUser } from "./redux/actions/authActions";
 
 import {
   Container,
@@ -13,8 +13,8 @@ import {
   Right,
   Content,
   Button
-} from 'native-base';
-import { StyleSheet, Text, View } from 'react-native';
+} from "native-base";
+import { StyleSheet, Text, View } from "react-native";
 
 // Initializes app
 export default class Main extends Component {
@@ -34,8 +34,8 @@ export default class Main extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center"
   }
 });

@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import ScreenStyleSheet from '../constants/ScreenStyleSheet';
-import { List } from 'native-base';
-import RecipeItem from './RecipeItem';
-import { Divider } from 'react-native-elements';
-import { connect } from 'react-redux';
-import { getRecipes } from '../actions/recipeActions';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
+import ScreenStyleSheet from "../constants/ScreenStyleSheet";
+import { List } from "native-base";
+import RecipeItem from "./RecipeItem";
+import { Divider } from "react-native-elements";
+import { connect } from "react-redux";
+import { getRecipes } from "../redux/actions/recipeActions";
+import PropTypes from "prop-types";
 
 class RecipeList extends Component {
   constructor(props) {

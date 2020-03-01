@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import ScreenStyleSheet from '../constants/ScreenStyleSheet';
+import React, { Component } from "react";
+import ScreenStyleSheet from "../constants/ScreenStyleSheet";
 import {
   Container,
   Header,
@@ -9,9 +9,9 @@ import {
   Right,
   Content,
   Button
-} from 'native-base';
-import { connect } from 'react-redux';
-import { postRecipe } from '../action/recipeActions';
+} from "native-base";
+import { connect } from "react-redux";
+import { postRecipe } from "../redux/actions/recipeActions";
 
 class AddRecipeScreen extends Component {
   constructor(props) {
