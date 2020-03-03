@@ -8,6 +8,11 @@ const Recipe = require('../../models/Recipe');
 // @route   GET api/recipes
 // @desc    Get all recipes
 // @access  Public
+/**
+ * @api {get} /recipes Get all recipes
+ * @apiName getRecipes
+ * @apiGroup Recipes
+ */
 router.get('/', (req, res) => {
   Recipe.find()
     .sort({ date: -1 })

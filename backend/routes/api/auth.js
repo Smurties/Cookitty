@@ -5,7 +5,7 @@ const config = require('config');
 const jwt = require('jsonwebtoken');
 const auth = require('../../middleware/auth');
 
-// Recipe Model
+// User Model
 const User = require('../../models/User');
 
 // @route   POST api/auth
