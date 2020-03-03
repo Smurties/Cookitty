@@ -6,14 +6,11 @@ const app = express();
 var path = require('path');
 
 // Define static file locations
-app.use(express.static(path.join(__dirname)));
-app.use('/styles', express.static(__dirname));
-app.use('/images', express.static(__dirname + '/images'));
-app.use('/scripts', express.static(__dirname + 'scripts'));
+app.use(express.static('docs'));
 
 // Display Docs
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname + 'docs/index.html'));
+  res.sendFile(path.join(__dirname + '/docs/index.html'));
 });
 
 // Body Parser Middleware
