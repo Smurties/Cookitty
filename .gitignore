@@ -19,3 +19,6 @@ web-report/
 # Package Files
 package-lock.json
 yarn.lock
+
+# Documentation Files
+*/docs
