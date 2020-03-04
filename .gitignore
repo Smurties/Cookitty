@@ -21,4 +21,4 @@ package-lock.json
 yarn.lock
 
 # Documentation Files
-*/docs
+docs/

@@ -12,6 +12,8 @@ const Recipe = require('../../models/Recipe');
  * @api {get} /recipes Get all recipes
  * @apiName getRecipes
  * @apiGroup Recipes
+ *
+ *
  */
 router.get('/', (req, res) => {
   Recipe.find()
@@ -24,6 +26,11 @@ router.get('/', (req, res) => {
 // @route   POST api/recipes
 // @desc    Create a recipe
 // @access  Private
+/**
+ * @api {post} /recipes Post a recipe
+ * @apiName postRecipe
+ * @apiGroup Recipes
+ */
 router.post('/', auth, (req, res) => {
   const newRecipe = new Recipe({ name: req.body.name });
 
@@ -33,6 +40,27 @@ router.post('/', auth, (req, res) => {
 // @route   DELETE api/recipes/:id
 // @desc    Delete a recipe
 // @access  Private
+/**
+ * @api {delete} /recipes/:id Delete a recipe
+ * @apiName deleteRecipe
+ * @apiGroup Recipes
+ * @apiVersion 1.0.0
+ *
+ * @apiParam {Number} id Recipe id
+ *
+ * @apiParamExample Example Body:
+ * {
+ * Request
+ * }
+ *
+ * @apiSuccess {Number} id Recipe id
+ *
+ * @apiSuccessExample Successful Response
+ * HTTP/1.1 200 OK
+ * {
+ * Response
+ * }
+ */
 router.delete('/:id', auth, (req, res) => {
   Recipe.findById(req.params.id)
     .then(recipe => recipe.remove().then(() => res.json({ success: true })))
