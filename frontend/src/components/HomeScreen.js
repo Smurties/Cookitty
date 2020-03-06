@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container, Header, Body, Title, Content } from "native-base";
 import { SearchBar } from "react-native-elements";
-import RecipeList from "./RecipeList";
+import RecipeList from "./recipeList/RecipeList";
 
 class HomeScreen extends Component {
   constructor(props) {

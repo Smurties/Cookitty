@@ -10,7 +10,7 @@ export default class Ingredient extends Component {
   renderIngredients() {
     let ingredients = [];
     this.props.ingredients.map((ingredient, index) => {
-      ingredients.unshift(
+      ingredients.push(
         <View style={styles.row} key={index}>
           <Text>{ingredient.ingredient}</Text>
           <Text>{ingredient.amount}</Text>

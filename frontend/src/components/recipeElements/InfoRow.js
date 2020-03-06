@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { FlatList, View, StyleSheet } from "react-native";
 import { Text } from "native-base";
 import { Divider } from "react-native-elements";
-import ScreenStyleSheet from "../constants/ScreenStyleSheet";
+import ScreenStyleSheet from "../../constants/ScreenStyleSheet";
 
 export default class InfoRow extends Component {
   constructor(props) {

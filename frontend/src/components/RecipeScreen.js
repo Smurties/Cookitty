@@ -10,13 +10,15 @@ import {
   Title,
   Content,
   Text,
-  H2
+  H2,
+  Icon
 } from "native-base";
 import { Divider } from "react-native-elements";
-import Icon from "react-native-vector-icons/FontAwesome5";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import ScreenStyleSheet from "../constants/ScreenStyleSheet";
-import InfoRow from "./InfoRow";
-import Ingredient from "./Ingredient";
+import InfoRow from "./recipeElements/InfoRow";
+import Ingredient from "./recipeElements/Ingredient";
+import Steps from "./recipeElements/Steps";
 
 const info = [
   {
@@ -48,6 +50,24 @@ const ingredients = [
   }
 ];
 
+const steps = [
+  {
+    step: "Heat up pan, put oil ihfjskljgegen gege pan"
+  },
+  {
+    step:
+      "Heat up pan, put oil in pan, jRC lien t Heat up pan, put oil in pan, jRC lHeaHeat up pan, put oil in pan, jRC lien tt up pan, put oil in pan, jRC lien tien t Heat up pan, put oil in pan, jRC lien t"
+  },
+  {
+    step:
+      "Heat up pan, put oil in pan, jRC lien t Heat up pan, put oil in pan, jRC lHeaHeat up pan, put oil in pan, jRC lien tt up pan, put oil in pan, jRC lien tien t Heat up pan, put oil in pan, jRC lien t"
+  },
+  {
+    step:
+      "Heat up pan, put oil in pan, jRC lien t Heat up pan, put oil in pan, jRC lHeaHeat up pan, put oil in pan, jRC lien tt up pan, put oil in pan, jRC lien tien t Heat up pan, put oil in pan, jRC lien t"
+  }
+];
+
 class RecipeScreen extends Component {
   constructor(props) {
     super(props);
@@ -60,7 +80,11 @@ class RecipeScreen extends Component {
         <Header>
           <Left style={ScreenStyleSheet.headerSides}>
             <Button transparent onPress={this.onBack}>
-              <Icon active name="chevron-left" style={ScreenStyleSheet.icon} />
+              <FontAwesome5
+                active
+                name="chevron-left"
+                style={ScreenStyleSheet.icon}
+              />
             </Button>
           </Left>
           <Body>
@@ -77,7 +101,10 @@ class RecipeScreen extends Component {
           </Right>
         </Header>
 
-        <Content style={ScreenStyleSheet.content}>
+        <Content
+          showsVerticalScrollIndicator={false}
+          style={ScreenStyleSheet.content}
+        >
           <H2>Beef</H2>
           <Text>By Daisy</Text>
           <Text>
@@ -85,12 +112,42 @@ class RecipeScreen extends Component {
             very easy steps, doesn’t take long to cook but still yummy.
           </Text>
           <InfoRow info={info} />
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-evenly" }}
+          >
+            <Button rounded light large>
+              <Icon>
+                <Image
+                  style={ScreenStyleSheet.headerIcon}
+                  source={require("../../assets/addList.png")}
+                />
+              </Icon>
+            </Button>
+            <Button rounded light large>
+              <Icon>
+                <Image
+                  style={ScreenStyleSheet.headerIcon}
+                  source={require("../../assets/cook.png")}
+                />
+              </Icon>
+            </Button>
+            <Button rounded light large>
+              <Icon>
+                <Image
+                  style={ScreenStyleSheet.headerIcon}
+                  source={require("../../assets/fork.png")}
+                />
+              </Icon>
+            </Button>
+          </View>
+
           <Text style={{ fontWeight: "bold" }}>Ingredients</Text>
           <Divider style={ScreenStyleSheet.bottomDivider} />
           <Ingredient ingredients={ingredients} />
 
           <Text style={{ fontWeight: "bold" }}>Steps</Text>
           <Divider style={ScreenStyleSheet.bottomDivider} />
+          <Steps steps={steps} />
         </Content>
       </Container>
     );
