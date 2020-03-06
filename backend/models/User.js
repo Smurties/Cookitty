@@ -19,7 +19,17 @@ const UserSchema = new Schema({
   register_date: {
     type: Date,
     default: Date.now
-  }
+  },
+  shopping_list: {
+    type: Array,
+    default: []
+  },
+  forks: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'recipe'
+    }
+  ]
 });
 
 module.exports = User = mongoose.model('user', UserSchema);

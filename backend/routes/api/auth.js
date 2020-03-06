@@ -8,6 +8,32 @@ const auth = require('../../middleware/auth');
 // User Model
 const User = require('../../models/User');
 
+/**
+ * @api {post} /auth Authenticate user
+ * @apiName auth
+ * @apiGroup Auth
+ *
+ * @apiVersion 1.0.0
+ *
+ * @apiParam {String} Email A valid email address
+ * @apiParam {String} Password A password
+ *
+ * @apiParamExample Example Body
+ *
+ * {
+ *
+ * }
+ *
+ * @apiSuccess {String} Token A JWT token
+ *
+ * @apiSuccessExample Successful Response
+ *
+ * HTTP/1.1 200 OK
+ *
+ * {
+ *
+ * }
+ */
 // @route   POST api/auth
 // @desc    Authenticate user
 // @access  Public
@@ -53,6 +79,31 @@ router.post('/', (req, res) => {
   });
 });
 
+/**
+ * @api {get} /auth/user Get user data
+ * @apiName getUserData
+ * @apiGroup Auth
+ *
+ * @apiVersion 1.0.0
+ *
+ * @apiParam {String} Token A JWT token
+ *
+ * @apiParamExample Example Body
+ *
+ * {
+ *
+ * }
+ *
+ * @apiSuccess {Object} User A User Object
+ *
+ * @apiSuccessExample Successful Response
+ *
+ * HTTP/1.1 200 OK
+ *
+ * {
+ *
+ * }
+ */
 // @route   GET api/auth/user
 // @desc    Get user data
 // @access  Private
@@ -60,6 +111,89 @@ router.get('/user', auth, (req, res) => {
   User.findById(req.user.id)
     .select('-password')
     .then(user => res.json(user));
+});
+
+/**
+ * @api {post} /auth/add-shopping-list Add to shopping list
+ * @apiName updateShoppingList
+ * @apiGroup Auth
+ *
+ * @apiVersion 1.0.0
+ *
+ * @apiParam {String} Token A JWT token
+ *
+ * @apiParamExample Example Body
+ *
+ * {
+ *
+ * }
+ *
+ * @apiSuccess {N/A} N/A N/A
+ *
+ * @apiSuccessExample Successful Response
+ *
+ * HTTP/1.1 200 OK
+ *
+ * {
+ *
+ * }
+ */
+// @route   POST api/auth/add-shopping-list
+// @desc    Add to shopping list
+// @access  Private
+router.post('/add-shopping-list', auth, (req, res) => {
+  const { shopping_list } = req.body;
+
+  User.findById(req.user.id)
+    .select('shopping_list')
+    .then(user => {
+      items = shopping_list.filter(
+        l_item => !user.shopping_list.find(m_item => l_item === m_item)
+      );
+      user.shopping_list.push(...items);
+      user.save();
+      res.json(user.shopping_list);
+    });
+});
+
+/**
+ * @api {post} /auth/remove-shopping-list Remove from shopping list
+ * @apiName removeShoppingList
+ * @apiGroup Auth
+ *
+ * @apiVersion 1.0.0
+ *
+ * @apiParam {String} Token A JWT token
+ *
+ * @apiParamExample Example Body
+ *
+ * {
+ *
+ * }
+ *
+ * @apiSuccess {N/A} N/A N/A
+ *
+ * @apiSuccessExample Successful Response
+ *
+ * HTTP/1.1 200 OK
+ *
+ * {
+ *
+ * }
+ */
+// @route   POST api/auth/remove-shopping-list
+// @desc    Remove from shopping list
+// @access  Private
+router.post('/remove-shopping-list', auth, (req, res) => {
+  const { shopping_list } = req.body;
+
+  User.findById(req.user.id)
+    .select('shopping_list')
+    .then(user => {
+      user.shopping_list.pull(...shopping_list);
+      user.save();
+      res.json(user.shopping_list);
+    });
 });
 
 module.exports = router;
