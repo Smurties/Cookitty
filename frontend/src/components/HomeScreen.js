@@ -46,11 +46,11 @@ class HomeScreen extends Component {
     return (
       <Container>
         {/* Header */}
-        <Header>
+        {/* <Header>
           <Body>
             <Title>Home</Title>
           </Body>
-        </Header>
+        </Header> */}
 
         <Content>
           <SearchBar
@@ -62,12 +62,14 @@ class HomeScreen extends Component {
             round
           />
 
-          {/* <RecipeItem 
-                    recipeTitle={"stir fry beef"}
-                    level={"easy"}
-                    user={"user123"}
-                    description={"This is a recipe for stir fry beef, ageljglbkgjhnnjbj hjbkjbjjnlknlkklnknklnnakheoi, agehgjlanjhjkegburgkjnkaghue"}
-                /> */}
+          {/* <RecipeItem
+            recipeTitle={"stir fry beef"}
+            level={"easy"}
+            user={"user123"}
+            description={
+              "This is a recipe for stir fry beef, ageljglbkgjhnnjbj hjbkjbjjnlknlkklnknklnnakheoi, agehgjlanjhjkegburgkjnkaghue"
+            }
+          /> */}
 
           <RecipeList recipes={this.state.recipes} />
         </Content>

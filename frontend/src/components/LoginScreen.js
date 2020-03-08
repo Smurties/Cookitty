@@ -24,15 +24,14 @@ class LoginScreen extends ValidationComponent {
       email: "",
       password: ""
     };
+    this.alogin = this.alogin.bind(this);
   }
 
-  login() {
-    // await new Promise((resolve, reject) => {
-    //   // Edit the event user clicks
-    //   this.props.loginUser(this.state.email, this.state.password);
-    //   resolve();
-    // });
-    console.log("login");
+  async aLogin() {
+    await this.props.login(this.state.email, this.state.password);
+    if (this.props.auth.isAuthenticated) {
+      this.props.navigation.navigate("AuthNavigator");
+    }
   }
 
   onPressLogin() {
@@ -41,7 +40,7 @@ class LoginScreen extends ValidationComponent {
     });
 
     if (valid) {
-      this.login();
+      this.aLogin();
     } else {
       Toast.show({
         text: "Invalid email, please check again!"

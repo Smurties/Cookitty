@@ -17,11 +17,11 @@ class ProfileScreen extends Component {
     return (
       <Container>
         {/* Header */}
-        <Header>
+        {/* <Header>
           <Body>
             <Title>Profile</Title>
           </Body>
-        </Header>
+        </Header> */}
         <Content>
           <TouchableOpacity
             style={ScreenStyleSheet.authButton}
