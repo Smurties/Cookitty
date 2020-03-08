@@ -25,7 +25,7 @@ class TabIcon extends Component {
           justifyContent: "center"
         }}
       >
-        <Icon name={this.props.iconName || "circle"} size={40} />
+        <Icon name={this.props.iconName || "circle"} size={25} />
       </View>
     );
   }
