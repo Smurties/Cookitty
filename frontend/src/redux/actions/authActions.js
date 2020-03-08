@@ -78,16 +78,11 @@ export const login = (email, password) => dispatch => {
 };
 
 // Logout user
-export const logout = () => (dispatch, getState) => {
+export const logout = () => {
   // Return promise to async call
-  return axios
-    .get(`${HOSTNAME}/api/auth/logout`, tokenConfig(getState))
-    .then(res => {
-      dispatch({ type: LOGOUT_SUCCESS });
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  return {
+    type: LOGOUT_SUCCESS
+  };
 };
 
 // Setup config/headers and token
