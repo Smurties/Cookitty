@@ -47,12 +47,6 @@ class HomeScreen extends Component {
     return (
       <Container>
         {/* Header */}
-        <Header hasTabs>
-          {/* <Body>
-            <Title>Home</Title>
-          </Body> */}
-        </Header>
-
         <Content>
           {/* <RecipeList recipes={this.state.recipes} /> */}
           <Tabs>

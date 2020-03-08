@@ -63,6 +63,7 @@ class LoginScreen extends ValidationComponent {
               name="email"
               placeholder="Email"
               placeholderColor={"grey"}
+              autoCapitalize={"none"}
               value={this.state.email}
               onChangeText={text => this.setState({ email: text })}
             />

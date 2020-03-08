@@ -13,22 +13,18 @@ const Navigator = createStackNavigator({
     screen: LoginScreen,
     navigationOptions: {
       title: "Login",
-      gesturesEnabled: true
+      gestureEnabled: true
     }
   },
   SignupScreen: {
     screen: SignupScreen,
     navigationOptions: {
       title: "Signup",
-      gesturesEnabled: true
+      gestureEnabled: true
     }
   },
-  AuthNavigator: {
+  Cookitty: {
     screen: AuthNavigator
-    //     navigationOptions: {
-    //       header: null,
-    //       gesturesEnabled: false
-    //     }
   }
 });
 
