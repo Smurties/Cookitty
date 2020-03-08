@@ -48,9 +48,9 @@ class HomeScreen extends Component {
       <Container>
         {/* Header */}
         <Header hasTabs>
-          <Body>
+          {/* <Body>
             <Title>Home</Title>
-          </Body>
+          </Body> */}
         </Header>
 
         <Content>
