@@ -9,14 +9,14 @@ import AuthNavigator from "./AuthNavigator";
 StatusBar.setBarStyle("dark-content", true);
 
 const Navigator = createStackNavigator({
-  LoginScreen: {
+  Login: {
     screen: LoginScreen,
     navigationOptions: {
       title: "Login",
       gestureEnabled: true
     }
   },
-  SignupScreen: {
+  Signup: {
     screen: SignupScreen,
     navigationOptions: {
       title: "Signup",

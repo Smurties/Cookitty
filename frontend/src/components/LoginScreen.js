@@ -29,7 +29,7 @@ class LoginScreen extends ValidationComponent {
   async aLogin() {
     await this.props.login(this.state.email, this.state.password);
     if (this.props.auth.isAuthenticated) {
-      this.props.navigation.navigate("AuthNavigator");
+      this.props.navigation.navigate("Cookitty");
     }
   }
 
@@ -37,7 +37,7 @@ class LoginScreen extends ValidationComponent {
     let emailValid = this.validate({
       email: { email: true, required: true }
     });
-
+    this.aLogin();
     if (emailValid) {
       this.aLogin();
     } else {
