@@ -1,5 +1,4 @@
 import React from "react";
-import { Actions } from "react-native-router-flux";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 import {
   Container,
@@ -48,9 +47,9 @@ class LoginScreen extends ValidationComponent {
     }
   }
 
-  onPressSignUp = () => {
-    Actions.signup();
-  };
+  // onPressSignUp = () => {
+  //   Actions.signup();
+  // };
 
   //render the screen
   render() {
