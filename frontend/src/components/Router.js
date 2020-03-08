@@ -4,6 +4,8 @@ import { View } from "react-native";
 import LoginScreen from "./LoginScreen";
 import SignupScreen from "./SignupScreen";
 import HomeScreen from "./HomeScreen";
+import SearchScreen from "./SearchScreen";
+import GroceryListScreen from "./GroceryListScreen";
 import AddRecipeScreen from "./AddRecipeScreen";
 import ProfileScreen from "./ProfileScreen";
 import RecipeScreen from "./RecipeScreen";
@@ -35,14 +37,18 @@ export default class RouterComponent extends Component {
     return (
       <Router>
         <Stack key="root">
-          <Stack key="auth" hideNavBar>
-            <Scene key="login" component={LoginScreen} />
+          {/* <Stack key="auth" hideNavBar>
+            <Scene key="login" component={RecipeScreen} />
             <Scene key="signup" component={SignupScreen} />
-          </Stack>
+          </Stack> */}
           <Stack key="app" hideNavBar panHandlers={null} type="reset">
             <Tabs showLabel={false} activeBackgroundColor="#eee">
               <Scene key="homeTab" iconName="home" icon={TabIcon} hideNavBar>
                 <Scene key="home" component={HomeScreen} title="Home" />
+              </Scene>
+
+              <Scene key="search" iconName="search" icon={TabIcon} hideNavBar>
+                <Scene key="search" component={SearchScreen} title="search" />
               </Scene>
 
               <Scene key="addTab" iconName="plus" icon={TabIcon} hideNavBar>
@@ -51,6 +57,10 @@ export default class RouterComponent extends Component {
                   component={AddRecipeScreen}
                   title="Add"
                 />
+              </Scene>
+
+              <Scene key="list" iconName="list" icon={TabIcon} hideNavBar>
+                <Scene key="list" component={GroceryListScreen} title="list" />
               </Scene>
 
               <Scene key="profileTab" iconName="user" icon={TabIcon} hideNavBar>
