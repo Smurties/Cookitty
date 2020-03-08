@@ -1,22 +1,11 @@
 import React, { Component } from "react";
-import {
-  Container,
-  Header,
-  Body,
-  Title,
-  Content,
-  Tab,
-  Tabs
-} from "native-base";
-import RecipeList from "./recipeList/RecipeList";
-import OriginalRecipeTab from "./switchTab/OriginalRecipeTab";
-import ForkedRecipeTab from "./switchTab/ForkedRecipeTab";
+import { Container, Header, Body, Title, Content } from "native-base";
+import RecipeList from "../recipeList/RecipeList";
 
-class HomeScreen extends Component {
+class ForkedRecipeTab extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      search: "",
       recipes: [
         {
           recipeTitle: "stir fry beef",
@@ -44,29 +33,8 @@ class HomeScreen extends Component {
   }
 
   render() {
-    return (
-      <Container>
-        {/* Header */}
-        <Header hasTabs>
-          <Body>
-            <Title>Home</Title>
-          </Body>
-        </Header>
-
-        <Content>
-          {/* <RecipeList recipes={this.state.recipes} /> */}
-          <Tabs>
-            <Tab heading="Original Recipe">
-              <OriginalRecipeTab />
-            </Tab>
-            <Tab heading="Forked Recipe">
-              <ForkedRecipeTab />
-            </Tab>
-          </Tabs>
-        </Content>
-      </Container>
-    );
+    return <RecipeList recipes={this.state.recipes} />;
   }
 }
 
-export default HomeScreen;
+export default ForkedRecipeTab;
