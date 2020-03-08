@@ -47,20 +47,14 @@ class LoginScreen extends ValidationComponent {
     }
   }
 
-  // onPressSignUp = () => {
-  //   Actions.signup();
-  // };
+  onPressSignUp = () => {
+    this.props.navigation.navigate("SignupScreen");
+  };
 
   //render the screen
   render() {
     return (
       <Container>
-        {/* Header */}
-        <Header
-          style={{ height: 0 }}
-          androidStatusBarColor={"white"}
-          iosBarStyle={"dark-content"}
-        />
         <Content>
           <Text style={ScreenStyleSheet.cookitty}>Cookitty</Text>
           <Item style={ScreenStyleSheet.input}>

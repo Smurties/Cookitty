@@ -91,12 +91,6 @@ class SignupScreen extends ValidationComponent {
   render() {
     return (
       <Container>
-        {/* Header */}
-        <Header
-          style={{ height: 0 }}
-          androidStatusBarColor={"white"}
-          iosBarStyle={"dark-content"}
-        />
         <Content>
           <Text style={ScreenStyleSheet.cookitty}>Cookitty</Text>
 
