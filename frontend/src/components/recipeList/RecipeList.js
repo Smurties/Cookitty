@@ -13,9 +13,9 @@ class RecipeList extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    this.props.getRecipes;
-  }
+  // componentDidMount() {
+  //   this.props.getRecipes;
+  // }
 
   getRecipe() {
     let recipes = [];
@@ -39,7 +39,7 @@ class RecipeList extends Component {
   }
 
   render() {
-    const { recipes } = this.props.recipes;
+    //const { recipes } = this.props.recipe;
     return <List>{this.getRecipe()}</List>;
   }
 }
