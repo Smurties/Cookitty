@@ -35,4 +35,8 @@ class ProfileScreen extends Component {
   }
 }
 
-export default ProfileScreen;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { logout })(ProfileScreen);
