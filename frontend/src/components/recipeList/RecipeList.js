@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
-import ScreenStyleSheet from "../constants/ScreenStyleSheet";
+import ScreenStyleSheet from "../../constants/ScreenStyleSheet";
 import { List } from "native-base";
 import RecipeItem from "./RecipeItem";
 import { Divider } from "react-native-elements";
 import { connect } from "react-redux";
-import { getRecipes } from "../redux/actions/recipeActions";
+import { getRecipes } from "../../redux/actions/recipeActions";
 import PropTypes from "prop-types";
 
 class RecipeList extends Component {
@@ -13,17 +13,24 @@ class RecipeList extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    this.props.getRecipes;
+  // componentDidMount() {
+  //   this.props.getRecipes;
+  // }
+
+  viewRecipe(index) {
+    this.props.navigation.navigate("RecipeScreen", {
+      index: index,
+      recipe: this.props.recipes[index]
+    });
   }
 
   getRecipe() {
     let recipes = [];
     this.props.recipes.map((recipe, index) => {
-      recipes.unshift(
+      recipes.push(
         <TouchableOpacity
           key={index}
-          // onPress={this.viewRecipe.bind(this, index)}
+          onPress={this.viewRecipe.bind(this, index)}
         >
           <RecipeItem
             recipeTitle={recipe.recipeTitle}
@@ -39,7 +46,7 @@ class RecipeList extends Component {
   }
 
   render() {
-    const { recipes } = this.props.recipe;
+    //const { recipes } = this.props.recipe;
     return <List>{this.getRecipe()}</List>;
   }
 }

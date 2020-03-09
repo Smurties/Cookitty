@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Actions } from "react-native-router-flux";
+// import { Actions } from "react-native-router-flux";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 import {
   Container,
@@ -91,12 +91,6 @@ class SignupScreen extends ValidationComponent {
   render() {
     return (
       <Container>
-        {/* Header */}
-        <Header
-          style={{ height: 0 }}
-          androidStatusBarColor={"white"}
-          iosBarStyle={"dark-content"}
-        />
         <Content>
           <Text style={ScreenStyleSheet.cookitty}>Cookitty</Text>
 
@@ -116,6 +110,7 @@ class SignupScreen extends ValidationComponent {
               name="email"
               placeholder="Email"
               placeholderColor={"grey"}
+              autoCapitalize={"none"}
               value={this.state.email}
               onChangeText={text => this.setState({ email: text })}
             />

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, FlatList, View } from "react-native";
+import { Image, FlatList, View, StyleSheet } from "react-native";
 import {
   Container,
   Header,
@@ -10,75 +10,72 @@ import {
   Title,
   Content,
   Text,
-  H2
+  H2,
+  Icon
 } from "native-base";
 import { Divider } from "react-native-elements";
-import Icon from "react-native-vector-icons/FontAwesome5";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import ScreenStyleSheet from "../constants/ScreenStyleSheet";
+import InfoRow from "./recipeElements/InfoRow";
+import Ingredient from "./recipeElements/Ingredient";
+import Steps from "./recipeElements/Steps";
 
-const DATA = [
-  {
-    title: "Servings ",
-    number: "10"
-  },
-  {
-    title: "Prep time",
-    number: "5 mins"
-  },
-  {
-    title: "Cook time",
-    number: "5 mins"
-  }
-];
 class RecipeScreen extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      recipe: this.props.navigation.state.params.recipe,
+      index: this.props.navigation.state.params.index
+    };
   }
 
   render() {
     return (
       <Container>
-        {/* Header */}
-        <Header>
-          <Left style={ScreenStyleSheet.headerSides}>
-            <Button transparent onPress={this.onBack}>
-              <Icon active name="chevron-left" style={ScreenStyleSheet.icon} />
+        <Content
+          showsVerticalScrollIndicator={false}
+          style={ScreenStyleSheet.content}
+        >
+          <H2>{this.state.recipe.recipeTitle}</H2>
+          <Text>By {this.state.recipe.user}</Text>
+          <Text>{this.state.recipe.description}</Text>
+          <InfoRow info={this.state.recipe.info} />
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-evenly" }}
+          >
+            <Button rounded light large>
+              <Icon>
+                <Image
+                  style={ScreenStyleSheet.headerIcon}
+                  source={require("../../assets/addList.png")}
+                />
+              </Icon>
             </Button>
-          </Left>
-          <Body>
-            <Title>Cookitty</Title>
-          </Body>
-          <Right>
-            <Button transparent onPress={this.onBack}>
-              <Image
-                style={ScreenStyleSheet.headerIcon}
-                source={require("../../assets/cook.png")}
-              />
-              <Text style={ScreenStyleSheet.headerText}>Start</Text>
+            <Button rounded light large>
+              <Icon>
+                <Image
+                  style={ScreenStyleSheet.headerIcon}
+                  source={require("../../assets/cook.png")}
+                />
+              </Icon>
             </Button>
-          </Right>
-        </Header>
+            <Button rounded light large>
+              <Icon>
+                <Image
+                  style={ScreenStyleSheet.headerIcon}
+                  source={require("../../assets/fork.png")}
+                />
+              </Icon>
+            </Button>
+          </View>
 
-        <Content style={ScreenStyleSheet.content}>
-          <H2>Beef</H2>
-          <Text>By Daisy</Text>
-          <Text>
-            This dish is my go-to when I need protein and veggies in one dish,
-            very easy steps, doesn’t take long to cook but still yummy.
-          </Text>
-          <Divider style={ScreenStyleSheet.contentDivider} />
-          <FlatList
-            horizontal
-            data={DATA}
-            renderItem={({ item }) => (
-              <View style={{ padding: 10 }}>
-                <Text>{item.title}</Text>
-                <Text>{item.number}</Text>
-              </View>
-            )}
-            keyExtractor={item => item.title}
-          />
-          <Divider style={ScreenStyleSheet.contentDivider} />
+          <Text style={{ fontWeight: "bold" }}>Ingredients</Text>
+          <Divider style={ScreenStyleSheet.bottomDivider} />
+          <Ingredient ingredients={this.state.recipe.ingredients} />
+
+          <Text style={{ fontWeight: "bold" }}>Steps</Text>
+          <Divider style={ScreenStyleSheet.bottomDivider} />
+          <Steps steps={this.state.recipe.steps} />
         </Content>
       </Container>
     );

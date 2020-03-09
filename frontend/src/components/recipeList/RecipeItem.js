@@ -42,14 +42,14 @@ const styles = StyleSheet.create({
     width: "100%",
     margin: 0,
     padding: 0,
-    flexDirection: "row"
+    flexDirection: "row",
+    justifyContent: "space-between"
   },
   title: {
     fontSize: 20,
     fontWeight: "bold"
   },
   level: {
-    marginLeft: "auto",
     width: "25%",
     color: "white",
     fontSize: 18,

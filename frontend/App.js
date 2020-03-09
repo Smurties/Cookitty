@@ -1,11 +1,19 @@
-import React from "react";
-import Main from "./src/Main";
+import React, { Component } from "react";
 import { Root } from "native-base";
+import { Provider } from "react-redux";
+import store from "./src/redux/store";
+import AppNavigator from "./src/navigation/AppNavigator";
 
-export default function App() {
-  return (
-    <Root>
-      <Main />
-    </Root>
-  );
+class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <Root>
+          <AppNavigator />
+        </Root>
+      </Provider>
+    );
+  }
 }
+
+export default App;

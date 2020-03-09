@@ -30,16 +30,7 @@ class AddRecipeScreen extends Component {
   // };
 
   render() {
-    return (
-      <Container>
-        {/* Header */}
-        <Header>
-          <Body>
-            <Title>Add</Title>
-          </Body>
-        </Header>
-      </Container>
-    );
+    return <Container>{/* Header */}</Container>;
   }
 }
 
