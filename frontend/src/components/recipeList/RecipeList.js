@@ -17,13 +17,20 @@ class RecipeList extends Component {
   //   this.props.getRecipes;
   // }
 
+  viewRecipe(index) {
+    this.props.navigation.navigate("RecipeScreen", {
+      index: index,
+      recipe: this.props.recipes[index]
+    });
+  }
+
   getRecipe() {
     let recipes = [];
     this.props.recipes.map((recipe, index) => {
       recipes.push(
         <TouchableOpacity
           key={index}
-          // onPress={this.viewRecipe.bind(this, index)}
+          onPress={this.viewRecipe.bind(this, index)}
         >
           <RecipeItem
             recipeTitle={recipe.recipeTitle}

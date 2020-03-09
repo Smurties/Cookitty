@@ -16,7 +16,7 @@ class ProfileScreen extends Component {
     this.props.logout();
     console.log(this.props.auth);
     if (!this.props.auth.isAuthenticated) {
-      this.props.navigation.navigate("Login");
+      this.props.navigation.replace("Login");
     }
   }
 

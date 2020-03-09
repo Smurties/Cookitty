@@ -4,6 +4,7 @@ import { createAppContainer } from "react-navigation";
 
 import LoginScreen from "../components/LoginScreen";
 import SignupScreen from "../components/SignupScreen";
+import RecipeScreen from "../components/RecipeScreen";
 import AuthNavigator from "./AuthNavigator";
 
 StatusBar.setBarStyle("dark-content", true);
@@ -12,8 +13,7 @@ const Navigator = createStackNavigator({
   Login: {
     screen: LoginScreen,
     navigationOptions: {
-      title: "Login",
-      gestureEnabled: true
+      title: "Login"
     }
   },
   Signup: {
@@ -24,7 +24,15 @@ const Navigator = createStackNavigator({
     }
   },
   Cookitty: {
-    screen: AuthNavigator
+    screen: AuthNavigator,
+    headerLeft: null
+  },
+  RecipeScreen: {
+    screen: RecipeScreen,
+    navigationOptions: {
+      title: "Cookitty",
+      gestureEnabled: true
+    }
   }
 });
 

@@ -29,7 +29,8 @@ class LoginScreen extends ValidationComponent {
   async aLogin() {
     await this.props.login(this.state.email, this.state.password);
     if (this.props.auth.isAuthenticated) {
-      this.props.navigation.navigate("Cookitty");
+      // using replace to reset the stack
+      this.props.navigation.replace("Cookitty");
     }
   }
 
