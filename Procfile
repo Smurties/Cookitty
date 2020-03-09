@@ -1,1 +1,1 @@
-web: npm run deploy && npm run backend
+web: npm run build && npm run backend

@@ -5,8 +5,31 @@ const auth = require('../../middleware/auth');
 // Recipe Model
 const Recipe = require('../../models/Recipe');
 
+/**
+ * @api {get} /recipes Get all recipes
+ * @apiName getRecipe
+ * @apiGroup Recipes
+ *
+ * @apiVersion 1.0.0
+ *
+ * @apiParamExample Example Body
+ *
+ * {
+ *
+ * }
+ *
+ * @apiSuccess {Object} Recipe Recipe object
+ *
+ * @apiSuccessExample Successful Response
+ *
+ * HTTP/1.1 200 OK
+ *
+ * {
+ *
+ * }
+ */
 // @route   GET api/recipes
-// @desc    Get all recipes
+// @desc    Get all most recent recipes
 // @access  Public
 router.get('/', (req, res) => {
   Recipe.find()
@@ -16,15 +39,64 @@ router.get('/', (req, res) => {
     });
 });
 
+/**
+ * @api {post} /recipes Post a recipe
+ * @apiName postRecipe
+ * @apiGroup Recipes
+ *
+ * @apiVersion 1.0.0
+ *
+ * @apiParam {String} Name Name of Recipe
+ * @apiParam {Object} Details Contains additional details about recipe
+ * @apiParam {Array} Ingredients An array of ingredients
+ * @apiParam {Array} Steps An array of steps
+ *
+ * @apiParamExample Example Body
+ *
+ * {
+ *
+ * }
+ *
+ * @apiSuccess {Number} id Recipe id
+ *
+ * @apiSuccessExample Successful Response
+ *
+ * HTTP/1.1 200 OK
+ *
+ * {
+ *
+ * }
+ */
 // @route   POST api/recipes
 // @desc    Create a recipe
 // @access  Private
 router.post('/', auth, (req, res) => {
-  const newRecipe = new Recipe({ name: req.body.name });
+  const { name, details, ingredients, steps } = req.body;
+  const newRecipe = new Recipe({
+    name,
+    details,
+    ingredients,
+    steps,
+    author: req.user.id
+  });
 
   newRecipe.save().then(recipe => res.json(recipe));
 });
 
+/**
+ * @api {delete} /recipes/:id Delete a recipe
+ * @apiName deleteRecipe
+ * @apiGroup Recipes
+ * @apiVersion 1.0.0
+ *
+ * @apiParam {Number} id Recipe id
+ *
+ * @apiSuccessExample Successful Response
+ * HTTP/1.1 200 OK
+ * {
+ *
+ * }
+ */
 // @route   DELETE api/recipes/:id
 // @desc    Delete a recipe
 // @access  Private

@@ -4,9 +4,34 @@ const bcrypt = require('bcryptjs');
 const config = require('config');
 const jwt = require('jsonwebtoken');
 
-// Recipe Model
+// User Model
 const User = require('../../models/User');
 
+/**
+ * @api {POST} /users Register new user
+ * @apiName register
+ * @apiGroup User
+ *
+ * @apiVersion 1.0.0
+ *
+ * @apiParam {String} Name A username
+ * @apiParam {String} Email A valid email address
+ * @apiParam {String} Password A password
+ *
+ * @apiParamExample Example Body
+ *
+ * {
+ *
+ * }
+ *
+ * @apiSuccessExample Successful Response
+ *
+ * HTTP/1.1 200 OK
+ *
+ * {
+ *
+ * }
+ */
 // @route   POST api/users
 // @desc    Register new user
 // @access  Public
