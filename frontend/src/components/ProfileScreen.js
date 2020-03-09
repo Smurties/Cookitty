@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import ScreenStyleSheet from "../constants/ScreenStyleSheet";
 import { TouchableOpacity } from "react-native";
 import { Container, Header, Body, Title, Content, Text } from "native-base";
+import { logout } from "../redux/actions/authActions";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 class ProfileScreen extends Component {
   constructor(props) {
@@ -10,18 +13,22 @@ class ProfileScreen extends Component {
   }
 
   onPressLogout() {
-    console.log("logout");
+    this.props.logout();
+    console.log(this.props.auth);
+    if (!this.props.auth.isAuthenticated) {
+      this.props.navigation.replace("Login");
+    }
   }
 
   render() {
     return (
       <Container>
         {/* Header */}
-        <Header>
+        {/* <Header>
           <Body>
             <Title>Profile</Title>
           </Body>
-        </Header>
+        </Header> */}
         <Content>
           <TouchableOpacity
             style={ScreenStyleSheet.authButton}
@@ -35,4 +42,12 @@ class ProfileScreen extends Component {
   }
 }
 
-export default ProfileScreen;
+ProfileScreen.proptypes = {
+  logout: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { logout })(ProfileScreen);

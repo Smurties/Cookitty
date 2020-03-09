@@ -1,5 +1,4 @@
 import React from "react";
-import { Actions } from "react-native-router-flux";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 import {
   Container,
@@ -24,24 +23,24 @@ class LoginScreen extends ValidationComponent {
       email: "",
       password: ""
     };
+    this.onPressLogin = this.onPressLogin.bind(this);
   }
 
-  login() {
-    // await new Promise((resolve, reject) => {
-    //   // Edit the event user clicks
-    //   this.props.loginUser(this.state.email, this.state.password);
-    //   resolve();
-    // });
-    console.log("login");
+  async aLogin() {
+    await this.props.login(this.state.email, this.state.password);
+    if (this.props.auth.isAuthenticated) {
+      // using replace to reset the stack
+      this.props.navigation.replace("Cookitty");
+    }
   }
 
   onPressLogin() {
-    let valid = this.validate({
+    let emailValid = this.validate({
       email: { email: true, required: true }
     });
-
-    if (valid) {
-      this.login();
+    this.aLogin();
+    if (emailValid) {
+      this.aLogin();
     } else {
       Toast.show({
         text: "Invalid email, please check again!"
@@ -50,19 +49,13 @@ class LoginScreen extends ValidationComponent {
   }
 
   onPressSignUp = () => {
-    Actions.signup();
+    this.props.navigation.navigate("SignupScreen");
   };
 
   //render the screen
   render() {
     return (
       <Container>
-        {/* Header */}
-        <Header
-          style={{ height: 0 }}
-          androidStatusBarColor={"white"}
-          iosBarStyle={"dark-content"}
-        />
         <Content>
           <Text style={ScreenStyleSheet.cookitty}>Cookitty</Text>
           <Item style={ScreenStyleSheet.input}>
@@ -71,6 +64,7 @@ class LoginScreen extends ValidationComponent {
               name="email"
               placeholder="Email"
               placeholderColor={"grey"}
+              autoCapitalize={"none"}
               value={this.state.email}
               onChangeText={text => this.setState({ email: text })}
             />

@@ -34,7 +34,7 @@ export default StyleSheet.create({
     width: 20,
     textAlign: "center",
     alignSelf: "center",
-    fontSize: 25
+    fontSize: 20
   },
   listDivider: {
     marginHorizontal: 10
@@ -61,5 +61,13 @@ export default StyleSheet.create({
   },
   content: {
     margin: 10
+  },
+  row: {
+    flex: 1,
+    justifyContent: "space-around"
+  },
+  bottomDivider: {
+    marginTop: 0,
+    marginBottom: 10
   }
 });

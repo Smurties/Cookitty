@@ -3,6 +3,15 @@ const mongoose = require('mongoose');
 const config = require('config');
 
 const app = express();
+var path = require('path');
+
+// Define static file locations
+app.use(express.static('docs'));
+
+// Display Docs
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname + '/docs/index.html'));
+});
 
 // Body Parser Middleware
 app.use(express.json());

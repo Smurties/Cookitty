@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { returnErrors } from './errorActions';
+import axios from "axios";
+import { returnErrors } from "./errorActions";
 import {
   USER_LOADED,
   USER_LOADING,
@@ -9,8 +9,8 @@ import {
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
   REGISTER_FAIL
-} from './types';
-import { HOSTNAME } from './constants';
+} from "./types";
+import { HOSTNAME } from "./constants";
 
 // Check token and load user
 export const loadUser = () => (dispatch, getState) => {
@@ -31,7 +31,7 @@ export const register = ({ name, email, password }) => dispatch => {
   // Headers
   const config = {
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     }
   };
 
@@ -45,30 +45,33 @@ export const register = ({ name, email, password }) => dispatch => {
     })
     .catch(err => {
       dispatch(
-        returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL')
+        returnErrors(err.response.data, err.response.status, "REGISTER_FAIL")
       );
       dispatch({ type: REGISTER_FAIL });
     });
 };
 
 // Login user
-export const login = ({ email, password }) => dispatch => {
+export const login = (email, password) => dispatch => {
   // Headers
   const config = {
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     }
   };
 
   // Request body
   const body = JSON.stringify({ email, password });
 
-  axios
-    .post(`${HOSTNAME}/api/users`, body, config)
-    .then(res => dispatch({ type: LOGIN_SUCCESS, payload: res.data }))
+  // Return promise to async call
+  return axios
+    .post(`${HOSTNAME}/api/auth`, body, config)
+    .then(res => {
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+    })
     .catch(err => {
       dispatch(
-        returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL')
+        returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
       );
       dispatch({ type: LOGIN_FAIL });
     });
@@ -76,6 +79,7 @@ export const login = ({ email, password }) => dispatch => {
 
 // Logout user
 export const logout = () => {
+  // Return promise to async call
   return {
     type: LOGOUT_SUCCESS
   };
@@ -89,12 +93,12 @@ export const tokenConfig = getState => {
   // Headers
   const config = {
     headers: {
-      'Content-type': 'application/json'
+      "Content-type": "application/json"
     }
   };
 
   if (token) {
-    config.headers['x-auth-token'] = token;
+    config.headers["x-auth-token"] = token;
   }
 
   return config;
