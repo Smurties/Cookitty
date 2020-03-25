@@ -10,19 +10,19 @@ import AuthNavigator from "./AuthNavigator";
 StatusBar.setBarStyle("dark-content", true);
 
 const Navigator = createStackNavigator({
-  Login: {
-    screen: LoginScreen,
-    navigationOptions: {
-      title: "Login"
-    }
-  },
-  Signup: {
-    screen: SignupScreen,
-    navigationOptions: {
-      title: "Signup",
-      gestureEnabled: true
-    }
-  },
+  // Login: {
+  //   screen: LoginScreen,
+  //   navigationOptions: {
+  //     title: "Login"
+  //   }
+  // },
+  // Signup: {
+  //   screen: SignupScreen,
+  //   navigationOptions: {
+  //     title: "Signup",
+  //     gestureEnabled: true
+  //   }
+  // },
   Cookitty: {
     screen: AuthNavigator,
     headerLeft: null
